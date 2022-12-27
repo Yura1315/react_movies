@@ -1,0 +1,22 @@
+@import '../../../assets/styles/vars.scss';
+
+.footer {
+  grid-area: footer;
+  display: inline-flex;
+  align-items: center;
+  background-color: $black;
+  color: $white-color;
+  &__wrap {
+    width: 1200px;
+    margin: 0 auto;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__text {
+    font-size: 16px;
+    color: $white-color;
+  }
+}

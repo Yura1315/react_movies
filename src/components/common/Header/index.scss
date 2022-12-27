@@ -1,0 +1,63 @@
+@import '../../../assets/styles/vars.scss';
+
+.header {
+  grid-area: header;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  &__wrap {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-bottom: 1px solid $main-color;
+  }
+  &__wrap svg {
+    margin-top: 6px;
+    fill: $black;
+    transition: ease 0.4s;
+    &:hover {
+      fill: $hover-color;
+    }
+  }
+  &__right {
+    display: flex;
+    position: relative;
+  }
+  &__link {
+    font-size: 17px;
+    color: $black;
+    margin-left: 20px;
+    transition: ease 0.4s;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+}
+
+.account {
+  margin-left: 15px;
+}
+
+.favorites__wrap {
+  display: flex;
+}
+
+.count-likes {
+  margin-left: 10px;
+}
+
+.account {
+  cursor: pointer;
+  transition: ease 0.4s;
+
+  &:hover ~ .account__nav {
+    display: block;
+  }
+  &:hover {
+    color: $hover-color;
+  }
+}

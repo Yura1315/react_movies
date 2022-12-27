@@ -1,0 +1,13 @@
+@import './normalize.scss';
+@import './vars.scss';
+
+body {
+  box-sizing: border-box;
+  background-color: $white-color;
+  font-family: 'Jost';
+  font-size: 24px;
+}
+
+a {
+  text-decoration: none;
+}
