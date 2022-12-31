@@ -1,7 +1,8 @@
 import React from 'react';
+import GeneralSlider from '../../components/GeneralSlider';
 
 const MainPage = () => {
-  return <h1>MainPage</h1>;
+  return <GeneralSlider />;
 };
 
 export default MainPage;
