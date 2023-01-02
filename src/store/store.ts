@@ -1,9 +1,12 @@
-import { combineReducers, configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
+// реализовать апи
+import { moviesApi } from '../hooks/redux/sevices/moviesApi';
+
 const rootReducer = combineReducers({
-  // 
+  //
 });
 
 const persistConfig = {
