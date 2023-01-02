@@ -1,38 +1,18 @@
 interface IMovie {
-  id: string;
-  primaryImage: {
-    caption: {
-      plainText: 'Darwin Karr and Gertrude McCoy in That Winsome Winnie Smile (1911)',
-      __typename: string;
-    };
-    height: number;
-    id: string;
-    url: string;
-    width: number;
-    __typename: string;
-  };
-  releaseDate: {
-    day: number;
-    month: number;
-    year: number;
-    __typename: string;
-  };
-  releaseYear: {
-    endYear: object;
-    year: number;
-    __typename: string;
-  };
-  titleText: {
-    text: 'That Winsome Winnie Smile';
-    __typename: string;
-  };
-  titleType: {
-    id: string;
-    isEpisode: boolean;
-    isSeries: boolean;
-    text: string;
-    __typename: string;
-  };
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: string[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
 export default IMovie;

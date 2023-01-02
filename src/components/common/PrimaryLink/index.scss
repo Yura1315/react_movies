@@ -1,0 +1,17 @@
+@import '../../../assets/styles/vars.scss';
+
+.primary-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 194px;
+  height: 40px;
+  border: 1px solid $black;
+  font-size: 16px;
+  font-weight: 600;
+  color: $black;
+  transition: ease 0.4s;
+  &:hover {
+    background-color: $white-color;
+  }
+}

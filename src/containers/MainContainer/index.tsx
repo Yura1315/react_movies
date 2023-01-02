@@ -8,8 +8,10 @@ const MainContainer = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await makeRequest({
-        url: 'https://moviesdatabase.p.rapidapi.com/titles',
-        params: { limit: '5' },
+        url: 'popular/',
+        params: {
+          page: '1',
+        },
       });
       setSlides(data.results);
     };
@@ -18,7 +20,7 @@ const MainContainer = () => {
     }
     console.log(slides);
   }, [slides]);
-  return <MainPage />;
+  return <MainPage slides={slides} />;
 };
 
 export default MainContainer;

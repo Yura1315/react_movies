@@ -1,0 +1,39 @@
+@import '../../../assets/styles/vars.scss';
+
+.btn {
+  &__left {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    background: rgb(247, 247, 247);
+    z-index: 10;
+    padding: 0;
+    margin-left: 10px;
+    & svg {
+      fill: $black;
+    }
+  }
+  &__right {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: none;
+    transform: rotate(180deg);
+    background: $main-color;
+    z-index: 10;
+    padding: 0;
+    margin-right: 10px;
+    & svg {
+      fill: $black;
+    }
+  }
+}
