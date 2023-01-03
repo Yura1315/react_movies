@@ -13,9 +13,12 @@ const makeRequest = async ({
       url,
       data,
       params,
-      baseURL: 'https://api.watchmode.com/v1/',
+      baseURL: 'https://moviesdatabase.p.rapidapi.com/',
       timeout: 10000,
-      headers,
+      headers: {
+        'X-RapidAPI-Key': 'e81fdf3df6msh3bd39336c3af4d6p189958jsn03b0306eee36',
+        'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+      }
     });
     return response.data;
   } catch (e) {
@@ -25,8 +28,3 @@ const makeRequest = async ({
 };
 
 export default makeRequest;
-
-
-// https://api.watchmode.com/v1/sources/?apiKey=YOUR_API_KEY' - пример url
-// API_KEY в папке .env
-// https://api.watchmode.com/docs/ - docs
