@@ -10,8 +10,8 @@ const App = () => (
   <Routes>
     <Route path="/" element={<PageWrapper />}>
       <Route index element={<MainContainer />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/search/:id" element={<MovieDetails />} />
+      <Route path="/search/:searchTerm" element={<Search />} />
+      <Route path="/movies/:id" element={<MovieDetails />} />
       <Route path="/genres/:id" element={<Genres />} />
     </Route>
   </Routes>

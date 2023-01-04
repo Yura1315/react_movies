@@ -1,0 +1,24 @@
+.details_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 1;
+}
+
+.details_container {
+  max-width: 500px;
+  padding: 10px;
+}
+
+.overview {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.overview p {
+  margin-right: 10px;
+}
+p {
+  margin: 10px 0;
+}

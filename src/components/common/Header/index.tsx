@@ -5,6 +5,7 @@ import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
 import './index.scss';
 import AccountNav from '../../AccountNav';
+import SearchBar from '../../SearchBar';
 
 const Header = () => {
   return (
@@ -19,9 +20,10 @@ const Header = () => {
           </Link>
         </div>
         <div className="header__search">
-          <Form>
+          {/* <Form>
             <Input />
-          </Form>
+          </Form> */}
+          <SearchBar />
         </div>
         <div className="header__right">
           <div className="favorites__wrap">

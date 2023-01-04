@@ -1,21 +1,16 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './index.scss';
-import { ICard } from '../../../interfaces';
-import useFetchData from '../../hooks/useFetchData';
+import { ICard } from '../../models/ICard';
 
-const Card = ({ id, name, imgUrl }: ICard) => {
-  const { movieData } = useFetchData(`https://moviesdatabase.p.rapidapi.com/titles/${id}/ratings`);
-
-  const rating = movieData?.results?.averageRating;
-
+const Card = ({ id, name, imgUrl, rate }: ICard) => {
   return (
-    <Link to={`/search/${id}`} style={{ textDecoration: 'none' }}>
-      <div className="card">
-        <p>{name}</p>
-        <p>{id}</p>
-        {rating ? <p>{rating}</p> : <p>No rates</p>}
-        <img alt={name} src={imgUrl} />
+    <Link to={`/movies/${id}`} style={{ textDecoration: 'none' }}>
+      <div className="card_container">
+        <div className="background_container">
+          <img className="background" alt={name} src={imgUrl} />
+        </div>
+        <div className="rate_container">{rate}</div>
       </div>
     </Link>
   );

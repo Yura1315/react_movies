@@ -1,57 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import Card from '../../components/Card/index';
-
-type DetailsMovie = {
-  id: number | undefined;
-  name: string | undefined;
-  imgUrl: string | undefined;
-  title: string;
-  plot_overview: string;
-  poster: string;
-};
+import useFetchData from '../../hooks/useFetchData';
+import './index.scss';
 
 const MovieDetails = () => {
-  const [movieData, setMovieData] = useState<DetailsMovie>();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { id: movieId } = useParams();
-
-  const baseUrl = 'https://api.watchmode.com/v1';
-  const query = `/title/${movieId}/details/?apiKey=85354a2ce4ba4cdb04b2c3cd6ca32e86`;
+  const { movieData } = useFetchData(
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US`
+  );
 
   console.log(movieId);
+  console.log(movieData);
 
-  const getMovieDetails = async () => {
-    try {
-      const response = await axios.get(`${baseUrl}${query}`);
-
-      const data = await response.data;
-      setIsLoading(false);
-      setMovieData(data);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    getMovieDetails();
-  }, []);
+  const popularity = Math.trunc(movieData?.popularity);
+  const rate = Number(movieData?.vote_average.toFixed(1));
+  const releaseDate = movieData?.release_date.split('-')[0];
 
   return (
-    <div className="details_wrapper">
+    <div>
       <h1>About the movie</h1>
-      <Card id={movieData?.id} name={movieData?.title} imgUrl={movieData?.poster} />
-      <div className="details_container">
-        <p>{movieData?.title}</p>
-        <p>{movieData?.plot_overview}</p>
-        <p>{movieData?.plot_overview}</p>
-        <p>
-          {movieData?.sources?.map((item: any) => (
-            <a>{item.web_url}</a>
-          ))}
-        </p>
+      <div className="details_wrapper">
+        <Card
+          id={movieData?.id}
+          name={movieData?.title}
+          imgUrl={`https://image.tmdb.org/t/p/w500/${movieData?.poster_path}`}
+          rate={rate}
+        />
+        <div className="details_container">
+          <p>{movieData?.title}</p>
+          <div className="overview">
+            <p>{movieData?.runtime} min</p>
+            <p>{popularity}</p>
+            <p>{releaseDate}yr.</p>
+            <p>{movieData?.origin_country}</p>
+          </div>
+          <p>{movieData?.overview}</p>
+        </div>
       </div>
     </div>
   );
