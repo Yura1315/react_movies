@@ -1,30 +1,19 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import useDebounce from '../../hooks/useDebounce';
 import Card from '../../components/Card/index';
-import { IMovie } from '../../../interfaces';
+import IMovie from '../../models/IMovie';
 import './index.scss';
+import { useParams } from 'react-router-dom';
 
 const Search = () => {
-  const [query, setQuery] = useState<string>('');
+  const { searchTerm } = useParams<string>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [results, setResults] = useState([]);
-  const debouncedValue = useDebounce(query, 800);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-  };
 
   const searchQuery = async () => {
     try {
       const response: AxiosResponse = await axios.get(
-        `https://moviesdatabase.p.rapidapi.com/titles/search/title/${debouncedValue}`,
-        {
-          headers: {
-            'X-RapidAPI-Key': 'b1677af2d2msh7d92e3c36211bdbp118104jsn209ccaf22e82',
-            'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com',
-          },
-        }
+        `https://api.themoviedb.org/3/search/movie?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US&page=1&query=${searchTerm}`
       );
       const data = await response.data.results;
       setIsLoading(false);
@@ -35,26 +24,23 @@ const Search = () => {
   };
 
   useEffect(() => {
-    if (debouncedValue) {
-      setIsLoading(true);
-      searchQuery();
-    } else {
-      setResults([]);
-    }
-  }, [debouncedValue]);
+    searchQuery();
+  }, []);
 
   console.log(results);
 
   return (
     <div>
-      Search for your favorite film
-      <br />
-      <input type="text" onChange={handleChange} />
       {isLoading && <h1>Loading...</h1>}
       <div className="wrapper">
-        {results?.map((item, i) => (
-          // Для карточки нужен проп ( imgUrl={item.primaryImage?.url}) - но он кидает ошибку, картинок почти нет
-          <Card id={item.id} name={item.titleText.text} key={i} />
+        {results?.map((item: IMovie, i: number) => (
+          <Card
+            id={item.id}
+            name={item.title}
+            key={i}
+            imgUrl={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            rate={item.vote_average}
+          />
         ))}
       </div>
     </div>
