@@ -1,0 +1,22 @@
+@import '../../assets/styles/vars.scss';
+
+.eye-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  outline: none;
+  border: none;
+  top: 14px;
+  right: 10px;
+  bottom: none;
+  & svg {
+    fill: rgb(216, 216, 216);
+    transition: ease-in-out 0.4s;
+  }
+  &:hover svg {
+    opacity: 1;
+    fill: $hover-color;
+  }
+}

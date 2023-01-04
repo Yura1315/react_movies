@@ -1,0 +1,51 @@
+@import '../../assets/styles/vars.scss';
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  &__wrap {
+    padding-top: 36px;
+    padding-bottom: 36px;
+    height: 450px;
+    width: 350px;
+    border: 1px solid $main-color;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.1);
+  }
+  &__content {
+    padding-left: 26px;
+    padding-right: 26px;
+    height: calc(100% - 86px);
+  }
+  &__links {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+    gap: 5px;
+  }
+  &__link {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    color: $black;
+    transition: ease-in-out 0.5s;
+    border-bottom: 1px solid transparent;
+    width: 100%;
+    &:hover {
+      color: $hover-color;
+    }
+    &-active {
+      color: $hover-color;
+      border-bottom: 1px solid $hover-color;
+    }
+  }
+  &__title {
+    font-size: 14px;
+    color: $black;
+    opacity: 0.4;
+    margin: 0;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+}

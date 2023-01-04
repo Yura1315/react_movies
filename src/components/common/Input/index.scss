@@ -1,1 +1,37 @@
 @import '../../../assets/styles/vars.scss';
+
+.input {
+  width: calc(100% - 19px);
+  height: 40px;
+  background: transparent;
+  margin-bottom: 20px;
+  border: 1px solid $black;
+  padding-left: 16px;
+  font-size: 14px;
+  transition: ease-in-out 0.4s;
+  &::placeholder {
+    font-size: 14px;
+    color: #a9abbd;
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid $hover-color;
+  }
+  &__content {
+    position: relative;
+  }
+  &-err {
+    border: 1px solid red;
+    &::placeholder {
+      color: red;
+    }
+  }
+}
+
+.err-item {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  color: red;
+  font-size: 10px;
+}

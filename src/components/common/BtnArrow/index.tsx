@@ -1,5 +1,4 @@
 import React from 'react';
-import { transform } from 'typescript';
 import './index.scss';
 
 type BtnArrowProps = {

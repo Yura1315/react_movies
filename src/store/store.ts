@@ -1,9 +1,12 @@
 import { combineReducers, configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
+import usersReducer from './UsersSlice';
+import authReducer from './AuthSlice';
 
 const rootReducer = combineReducers({
-  // 
+  usersReducer,
+  authReducer
 });
 
 const persistConfig = {

@@ -1,11 +1,10 @@
 import React, { ChangeEvent } from 'react';
-import SearchBtn from '../SearchBtn';
-import './index.scss';
+import ShowPassword from '../../ShowPassword';
+import '../Input/index.scss';
 
-type InputPropsType = {
+type InputPasswordPropsType = {
   placeholder?: string;
   type?: 'text' | 'password';
-  search?: boolean;
   value: {
     value: string;
     error: boolean;
@@ -16,17 +15,20 @@ type InputPropsType = {
       error: boolean;
     }>
   >;
-  textErr?: string;
+  visible?: boolean;
+  handlerShow?: () => void;
+  textErr: string;
 };
 
-const Input = ({
+const InputPassword = ({
   placeholder,
-  type = 'text',
-  search,
+  type = 'password',
   value,
   setValue,
+  visible,
+  handlerShow,
   textErr,
-}: InputPropsType) => {
+}: InputPasswordPropsType) => {
   const handler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({ ...prev, value: event.target.value }));
   };
@@ -39,16 +41,16 @@ const Input = ({
     <div className="input__content">
       <input
         className={value.error ? 'input input-err' : 'input'}
-        type={type}
+        type={visible ? 'text' : 'password'}
         placeholder={placeholder}
         value={value.value}
         onChange={handler}
         onFocus={handlerFocus}
       />
-      {value.error && type !== 'password' ? <span className="err-item">{textErr}</span> : ''}
-      {search ? <SearchBtn /> : ''}
+      {value.error && type === 'password' ? <span className="err-item">{textErr}</span> : ''}
+      {type === 'password' ? <ShowPassword handlerShow={handlerShow} /> : ''}
     </div>
   );
 };
 
-export default Input;
+export default InputPassword;
