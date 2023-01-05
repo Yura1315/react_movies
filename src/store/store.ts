@@ -4,9 +4,27 @@ import { persistReducer, persistStore } from 'redux-persist';
 
 // реализовать апи
 import { moviesApi } from '../hooks/redux/sevices/moviesApi';
+const Auth = {
+  isAuth: false,
+  login: "",
+  pass: "",
+}
+
+const authReducer = (state = Auth, action: any) => {
+  switch (action.type) {
+    case "isLogin":
+      return { ...state, isAuth: true }
+    case "isRegister":
+      return { ...state, isAuth: true, login: action.login, pass: action.pass }
+    case "Signout":
+      return { ...state, isAuth: false }
+    default:
+      return state
+  }
+}
 
 const rootReducer = combineReducers({
-  //
+  auth: authReducer,
 });
 
 const persistConfig = {
