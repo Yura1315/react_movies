@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/redux/redux';
 import './index.scss';
@@ -6,9 +7,13 @@ import './index.scss';
 const AuthWrapper = () => {
   const { user } = useAppSelector((state) => state.authReducer);
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   useEffect(() => {
-    if (user.username) {
+    if (user.username && !location.state) {
       navigate('/');
+    } else if (user.username && location.state) {
+      navigate(location.state.from.pathname);
     }
   }, [user]);
   return (

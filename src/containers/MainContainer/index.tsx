@@ -18,7 +18,6 @@ const MainContainer = () => {
     if (slides.length === 0) {
       getData();
     }
-    console.log(slides);
   }, [slides]);
   return <MainPage slides={slides} />;
 };

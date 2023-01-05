@@ -17,7 +17,6 @@ const GeneralSlider = ({ slides }: GeneralSliderPropsType) => {
     } else if (slideIndex === slides.length) {
       setSlideIndex(1);
     }
-    console.log(slideIndex);
   };
 
   const prevSlide = () => {

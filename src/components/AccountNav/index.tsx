@@ -13,8 +13,6 @@ const AccountNav = () => {
   const accountLogOut = () => {
     dispatch(logOut());
   };
-
-  console.log(user);
   return (
     <div className="account__nav">
       {!user.username ? (
