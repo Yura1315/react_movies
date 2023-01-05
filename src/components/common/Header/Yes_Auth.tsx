@@ -1,6 +1,7 @@
 import React from 'react';
 import { RootState } from '../../../store/store';
 import { useSelector } from 'react-redux';
+import Signout from '../../Signout/Signout';
 
 
 const Yes_Auth = () => {
@@ -8,6 +9,7 @@ const Yes_Auth = () => {
   return (
     <>
       <span className="log">{Auth}</span>
+      <Signout />
     </>
   );
 };
