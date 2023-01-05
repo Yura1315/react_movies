@@ -4,9 +4,14 @@ import Form from '../Form';
 import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
 import './index.scss';
-import AccountNav from '../../AccountNav';
+// import AccountNav from '../../AccountNav';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
+import No_Auth from './No_Auth';
+import Yes_Auth from './Yes_Auth';
 
 const Header = () => {
+  const Auth = useSelector((state: RootState) => state.auth.isAuth)
   return (
     <header className="header">
       <div className="header__wrap">
@@ -40,13 +45,10 @@ const Header = () => {
             </Link>
             <div className="count-likes">4</div>
           </div>
-          <Link to={"/signin"}>
-            <span className="account">Вход</span>
-          </Link>
-          <AccountNav />
-          <Link to={"/registr"}>
-            <span className="register">Регистрация</span>
-          </Link>
+          {Auth ?
+            <Yes_Auth /> :
+            <No_Auth />
+          }
         </div>
       </div>
     </header>

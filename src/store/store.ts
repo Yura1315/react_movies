@@ -9,14 +9,17 @@ const Auth = {
   login: "",
   pass: "",
 }
+const IS_LOGIN = "IS_LOGIN";
+const IS_REGISTER = "IS_REGISTER";
+const SIGN_OUT = "SIGN_OUT";
 
 const authReducer = (state = Auth, action: any) => {
   switch (action.type) {
-    case "isLogin":
+    case IS_LOGIN:
       return { ...state, isAuth: true }
-    case "isRegister":
+    case IS_REGISTER:
       return { ...state, isAuth: true, login: action.login, pass: action.pass }
-    case "Signout":
+    case SIGN_OUT:
       return { ...state, isAuth: false }
     default:
       return state
