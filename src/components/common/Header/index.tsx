@@ -4,11 +4,12 @@ import Form from '../Form';
 import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
 import './index.scss';
-// import AccountNav from '../../AccountNav';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
 import No_Auth from './No_Auth';
 import Yes_Auth from './Yes_Auth';
+import AccountNav from '../../AccountNav';
+import SearchBar from '../../SearchBar';
 
 const Header = () => {
   const Auth = useSelector((state: RootState) => state.auth.isAuth)
@@ -24,9 +25,10 @@ const Header = () => {
           </Link>
         </div>
         <div className="header__search">
-          <Form>
+          {/* <Form>
             <Input />
-          </Form>
+          </Form> */}
+          <SearchBar />
         </div>
         <div className="header__right">
           <div className="favorites__wrap">
