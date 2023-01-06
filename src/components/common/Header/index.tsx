@@ -15,7 +15,7 @@ const Header = () => {
     e.preventDefault();
     if (search.value.length) {
       setSearch((prev) => ({ ...prev, value: '' }));
-      navigate(`search/movie?query=${search.value}`);
+      navigate(`search/movie?query=${search.value}&page=1`);
     }
   };
   return (

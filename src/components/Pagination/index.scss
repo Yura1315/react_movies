@@ -1,0 +1,42 @@
+@import '../../assets/styles/vars.scss';
+
+.paginate {
+  &__wrap {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    border: none;
+    & svg {
+      fill: $black;
+      transition: ease-in-out 0.4s;
+    }
+    &:hover svg {
+      fill: $hover-color;
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    transform: rotate(180deg);
+    border: none;
+    & svg {
+      fill: $black;
+      transition: ease-in-out 0.4s;
+    }
+    &:hover svg {
+      fill: $hover-color;
+    }
+  }
+  &__info {
+    font-size: 18px;
+    color: $black;
+  }
+}

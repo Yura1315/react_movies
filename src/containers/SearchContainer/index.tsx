@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import IGenre from '../../models/IGenre';
-import IMovie, { IMovieFetch } from '../../models/IMovie';
+import { IMovieFetch } from '../../models/IMovie';
 import makeRequest from '../../network';
 import SearchPage from '../../pages/SearchPage';
 
 const SearchContainer = () => {
   const [dataGenre, setDataGenre] = useState<IGenre[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [dataMovies, setDataMovie] = useState<IMovieFetch>({
     results: [],
     page: 0,
@@ -15,7 +15,24 @@ const SearchContainer = () => {
     total_pages: 0,
   });
   const [searchParams, setSearchParams] = useSearchParams();
-  const pageParams = searchParams.get('query');
+  const queryParams = searchParams.get('query');
+  const pageParams = searchParams.get('page') || 1;
+  const nextPage = () => {
+    if (pageParams === `${dataMovies.total_pages}`) {
+      setSearchParams(`?query=${queryParams}&page=1`);
+    } else {
+      setSearchParams(`?query=${queryParams}&page=${+pageParams + 1}`);
+    }
+  };
+
+  const prevPage = () => {
+    if (+pageParams === 1) {
+      setSearchParams(`?query=${queryParams}&page=${dataMovies.total_pages}`);
+    } else {
+      setSearchParams(`?query=${queryParams}&page=${+pageParams - 1}`);
+    }
+  };
+
   useEffect(() => {
     const getData = async () => {
       const data = await makeRequest({
@@ -32,7 +49,7 @@ const SearchContainer = () => {
   useEffect(() => {
     const getDataMovie = async () => {
       const data = await makeRequest({
-        url: `/search/movie?query=${pageParams}`,
+        url: `/search/movie?query=${queryParams}&page=${pageParams}`,
       });
       console.log(data);
       setDataMovie(data);
@@ -45,7 +62,13 @@ const SearchContainer = () => {
       {!dataGenre.length ? (
         <h1>Loading...</h1>
       ) : (
-        <SearchPage dataMovies={dataMovies} dataGenre={dataGenre} pageParams={pageParams} />
+        <SearchPage
+          dataMovies={dataMovies}
+          dataGenre={dataGenre}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          queryParams={queryParams}
+        />
       )}
     </>
   );

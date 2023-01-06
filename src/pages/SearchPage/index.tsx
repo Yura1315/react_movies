@@ -1,25 +1,42 @@
 import React from 'react';
 import Card from '../../components/Card';
 import GenreSlider from '../../components/GenreSlider';
+import Pagination from '../../components/Pagination';
 import IGenre from '../../models/IGenre';
-import IMovie, { IMovieFetch } from '../../models/IMovie';
+import { IMovieFetch } from '../../models/IMovie';
 import './index.scss';
 
 type SearchPagePropsType = {
   dataGenre: IGenre[];
   dataMovies: IMovieFetch;
-  pageParams: string | null;
+  queryParams: string | null;
+  prevPage: () => void;
+  nextPage: () => void;
 };
 
-const SearchPage = ({ dataGenre, dataMovies, pageParams }: SearchPagePropsType) => {
+const SearchPage = ({
+  dataGenre,
+  dataMovies,
+  prevPage,
+  nextPage,
+  queryParams,
+}: SearchPagePropsType) => {
   return (
     <section className="search__container">
       <GenreSlider dataGenre={dataGenre} />
       <div className="card-movies__wrap">
-        <span className="search__info">
-          Search: <span className="search__results">{pageParams}</span>. found:
-          <span className="search__results"> {dataMovies.total_results}</span>
-        </span>
+        <div className="search__header">
+          <div className="search__info">
+            Search: <span className="search__results">{queryParams}</span>. found:
+            <span className="search__results"> {dataMovies.total_results}</span>
+          </div>
+          <Pagination
+            page={dataMovies.page}
+            totalPages={dataMovies.total_pages}
+            prevPage={prevPage}
+            nextPage={nextPage}
+          />
+        </div>
         <ul className="card-movies__list">
           {dataMovies.results.map((el) => (
             <Card
@@ -32,6 +49,14 @@ const SearchPage = ({ dataGenre, dataMovies, pageParams }: SearchPagePropsType) 
             />
           ))}
         </ul>
+        <div className="search__bottom">
+          <Pagination
+            page={dataMovies.page}
+            totalPages={dataMovies.total_pages}
+            prevPage={prevPage}
+            nextPage={nextPage}
+          />
+        </div>
       </div>
     </section>
   );
