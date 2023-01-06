@@ -2,13 +2,16 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Card from '../../components/Card/index';
 import useFetchData from '../../hooks/useFetchData';
+import { useGetMovieDetailsQuery } from '../../store/movieApiSlice';
 import './index.scss';
 
 const MovieDetails = () => {
   const { id: movieId } = useParams();
-  const { movieData } = useFetchData(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US`
-  );
+  // const { movieData } = useFetchData(
+  //   `https://api.themoviedb.org/3/movie/${movieId}?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US`
+  // );
+
+  const { data: movieData, isFetching, error } = useGetMovieDetailsQuery(movieId);
 
   console.log(movieId);
   console.log(movieData);

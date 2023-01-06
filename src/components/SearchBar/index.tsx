@@ -15,7 +15,6 @@ const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="search_bar">
-        <BsSearch aria-hidden="true" className="icon" />
         <input
           value={searchTerm}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}

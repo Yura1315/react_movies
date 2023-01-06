@@ -3,7 +3,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 
 // реализовать апи
-import { moviesApi } from '../hooks/redux/sevices/moviesApi';
+import { movieApi } from './movieApiSlice';
 
 const rootReducer = combineReducers({
   //
@@ -17,11 +17,11 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: { persistedReducer, [movieApi.reducerPath]: movieApi.reducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(movieApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

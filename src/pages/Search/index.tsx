@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import Card from '../../components/Card/index';
+import SearchBar from '../../components/SearchBar';
 import IMovie from '../../models/IMovie';
 import './index.scss';
 import { useParams } from 'react-router-dom';
@@ -25,13 +26,15 @@ const Search = () => {
 
   useEffect(() => {
     searchQuery();
-  }, []);
+  }, [searchTerm]);
 
   console.log(results);
 
   return (
-    <div>
+    <div className="search_wrapper">
       {isLoading && <h1>Loading...</h1>}
+
+      <SearchBar />
       <div className="wrapper">
         {results?.map((item: IMovie, i: number) => (
           <Card

@@ -1,9 +1,14 @@
 form {
-  padding: 8px;
+  padding: 8px 0;
 }
 
 .search_bar {
   display: flex;
   flex-direction: row;
   justify-content: start;
+  max-width: max-content;
+}
+
+.search_input {
+  max-width: 500px;
 }
