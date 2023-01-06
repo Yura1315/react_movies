@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { SyntheticEvent, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Form from '../Form';
 import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
@@ -10,6 +10,14 @@ import { useAppSelector } from '../../../hooks/redux/redux';
 const Header = () => {
   const { user } = useAppSelector((state) => state.authReducer);
   const [search, setSearch] = useState({ value: '', error: false });
+  const navigate = useNavigate();
+  const searchHandle = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (search.value.length) {
+      setSearch((prev) => ({ ...prev, value: '' }));
+      navigate(`search/movie?query=${search.value}`);
+    }
+  };
   return (
     <header className="header">
       <div className="header__wrap">
@@ -17,18 +25,24 @@ const Header = () => {
           <Link to={'/'}>
             <img src={logo} alt="logo" />
           </Link>
-          <Link to={'/history'} className="header__link">
+          <Link to={'history'} className="header__link">
             History
           </Link>
         </div>
         <div className="header__search">
           <Form>
-            <Input placeholder="enter text" search value={search} setValue={setSearch} />
+            <Input
+              placeholder="enter text"
+              search
+              value={search}
+              setValue={setSearch}
+              searchHandle={searchHandle}
+            />
           </Form>
         </div>
         <div className="header__right">
           <div className="favorites__wrap">
-            <Link to={'/favorites'}>
+            <Link to={'favorites'}>
               <svg
                 width="24"
                 height="24"

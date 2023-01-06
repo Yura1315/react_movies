@@ -3,6 +3,7 @@
   width: 100%;
   display: grid;
   margin: 0 auto;
+  overflow: hidden;
   grid-template-areas:
     'header'
     'content'
@@ -16,4 +17,10 @@
   margin: 0 auto;
   padding-right: 15px;
   padding-left: 15px;
+}
+
+@media screen and (max-width: 1200px) {
+  .content {
+    width: 100%;
+  }
 }

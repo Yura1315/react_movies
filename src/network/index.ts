@@ -16,7 +16,7 @@ const makeRequest = async ({
         api_key: '8e0babef43795dac6a90149ecacf44d4',
         language: 'en-US',
       },
-      baseURL: 'https://api.themoviedb.org/3/movie/',
+      baseURL: 'https://api.themoviedb.org/3/',
       timeout: 10000,
     });
     return response.data;

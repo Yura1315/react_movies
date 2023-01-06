@@ -8,7 +8,6 @@ const AuthWrapper = () => {
   const { user } = useAppSelector((state) => state.authReducer);
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   useEffect(() => {
     if (user.username && !location.state) {
       navigate('/');

@@ -8,7 +8,7 @@ const MainContainer = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await makeRequest({
-        url: 'popular/',
+        url: 'movie/popular/',
         params: {
           page: '1',
         },

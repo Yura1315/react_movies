@@ -15,4 +15,13 @@ interface IMovie {
   vote_count: number;
 }
 
+export interface IMovieFetch {
+  page: number;
+  results: IMovie[];
+  total_pages: number;
+  total_results: number;
+
+}
+
 export default IMovie;
+

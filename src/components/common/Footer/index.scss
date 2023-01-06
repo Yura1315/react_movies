@@ -20,3 +20,11 @@
     color: $white-color;
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .footer {
+    &__wrap {
+      width: 100%;
+    }
+  }
+}

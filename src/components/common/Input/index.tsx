@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, SyntheticEvent } from 'react';
 import SearchBtn from '../SearchBtn';
 import './index.scss';
 
@@ -17,6 +17,7 @@ type InputPropsType = {
     }>
   >;
   textErr?: string;
+  searchHandle?: (e: SyntheticEvent) => void;
 };
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
   value,
   setValue,
   textErr,
+  searchHandle,
 }: InputPropsType) => {
   const handler = (event: ChangeEvent<HTMLInputElement>) => {
     setValue((prev) => ({ ...prev, value: event.target.value }));
@@ -46,7 +48,7 @@ const Input = ({
         onFocus={handlerFocus}
       />
       {value.error && type !== 'password' ? <span className="err-item">{textErr}</span> : ''}
-      {search ? <SearchBtn /> : ''}
+      {search ? <SearchBtn searchHandle={searchHandle} /> : ''}
     </div>
   );
 };

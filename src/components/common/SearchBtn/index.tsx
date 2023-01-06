@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import './index.scss';
 
 type SearhBtnPropsType = {
-  handlerSearch?: () => void;
+  searchHandle?: (e: SyntheticEvent) => void;
 };
 
-const SearchBtn = ({ handlerSearch }: SearhBtnPropsType) => {
+const SearchBtn = ({ searchHandle }: SearhBtnPropsType) => {
   return (
-    <button className="search-btn" type="submit" onClick={handlerSearch}>
+    <button className="search-btn" type="submit" onClick={searchHandle}>
       Search
     </button>
   );
