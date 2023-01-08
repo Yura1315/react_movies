@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import IMovie from '../models/IMovie';
+import IGenre from '../models/IGenre';
+
+type IMovieData = {
+  genres: IGenre[];
+  results: IMovie[];
+};
 
 const useFetchGenres = (url: string) => {
-  const [movieData, setMovieData] = useState<IMovie | undefined>();
+  const [movieData, setMovieData] = useState<IMovieData>();
 
   const getData = async () => {
     try {

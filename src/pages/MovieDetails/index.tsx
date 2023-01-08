@@ -11,12 +11,12 @@ const MovieDetails = () => {
   //   `https://api.themoviedb.org/3/movie/${movieId}?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US`
   // );
 
-  const { data: movieData, isFetching, error } = useGetMovieDetailsQuery(movieId);
+  const { data: movieData, isFetching, error } = useGetMovieDetailsQuery(movieId as string);
 
   console.log(movieId);
   console.log(movieData);
 
-  const popularity = Math.trunc(movieData?.popularity);
+  const popularity = Math.trunc(movieData?.popularity as number);
   const rate = Number(movieData?.vote_average.toFixed(1));
   const releaseDate = movieData?.release_date.split('-')[0];
 

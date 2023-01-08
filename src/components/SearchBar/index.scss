@@ -1,4 +1,5 @@
 form {
+  width: 100%;
   padding: 8px 0;
 }
 
@@ -6,9 +7,15 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: start;
-  max-width: max-content;
 }
 
 .search_input {
-  max-width: 500px;
+  width: 100%;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #575756;
+
+  &:focus {
+    outline: 0;
+  }
 }
