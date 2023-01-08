@@ -24,7 +24,8 @@ const CardHistory = ({ id, link, search, date }: IHistory) => {
         <span className="card-link__item">{`${date
           .toLocaleDateString()
           .split('/')
-          .join('.')}  ${date.toLocaleTimeString()}`}</span>
+          .join('.')
+          .toString()}  ${date.toLocaleTimeString().toString()}`}</span>
       </div>
       <button className="cross-btn" type="button" onClick={removeHistory}>
         <svg
