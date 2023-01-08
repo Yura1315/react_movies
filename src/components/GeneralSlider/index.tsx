@@ -30,13 +30,13 @@ const GeneralSlider = ({ slides }: GeneralSliderPropsType) => {
     <section className="general__slider">
       <div className="slider__wrap">
         <ul className="slider__list">
-          {slides.map((el: IMovie, i: number) => (
+          {slides.map((el, i: number) => (
             <li
               key={el.id}
               className={slideIndex === i + 1 ? 'slider__item-active' : 'slider__item'}>
               <div className="slider__info">
                 {el.original_title}
-                <PrimaryLink title="more" link="ff" />
+                <PrimaryLink title="more" link="/movie/:id" />
               </div>
               <img
                 className="slider__img"
