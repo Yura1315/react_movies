@@ -3,6 +3,7 @@ import './stRegist.sass'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
+import ShowError from './ShowError';
 
 const Regist = () => {
   const dispatch = useDispatch();
@@ -10,22 +11,21 @@ const Regist = () => {
   const [login, setMail] = useState<string>('')
   const [pass, setPass] = useState<string>('')
   const navigate = useNavigate();
-  const CheckAuth = () => {
-    useEffect(() => {
-      Auth.isAuth && navigate('/');
-    }, [Auth]);
-  }
-  const Save = () => {
+
+  useEffect(() => {
+    Auth.isAuth && navigate('/');
+  }, [Auth.isAuth]);
+
+  const Save = (): void => {
     localStorage.setItem(login, pass);
     if (localStorage.login !== undefined) {
-      alert(`Логин: ${login} уже существует. Придумайте другой :) `)
+      <ShowError />
     }
     else if (login !== '' && pass !== '') {
-      dispatch({ type: 'IS_REGISTER', payload: Auth, login, pass })
-      CheckAuth();
+      dispatch({ type: 'IS_REGISTER', payload: Auth.isAuth, login, pass })
     }
     else {
-      alert('Придумайте логин и пароль')
+      <ShowError />
     }
   }
   return (
@@ -38,6 +38,7 @@ const Regist = () => {
             className='text__inp'
             placeholder='Придумайте логин'
             value={login}
+            required
             onChange={event => setMail(event.target.value)} />
 
           <input type="password"
@@ -46,8 +47,9 @@ const Regist = () => {
             className='text__input'
             placeholder='Придумайте пароль'
             value={pass}
+            required
             onChange={event => setPass(event.target.value)} />
-          <button className='text__btn' onClick={() => Save()}>Старт</button>
+          <button className='text__btn' onClick={() => Save()} >Старт</button>
         </div>
       </div>
     </>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
+import './Signout.sass'
 
 const Signout = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Signout = () => {
   }
 
   return (
-    <button className='signup' onClick={() => goOut()}>Выйти</button>
+    <span className='signup' onClick={() => goOut()}>Выйти</span>
   );
 };
 

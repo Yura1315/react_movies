@@ -3,6 +3,7 @@ import './stLogin.sass'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
+import ShowError from '../Registrtion/ShowError';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -11,19 +12,17 @@ const Login = () => {
   const [pass, setPass] = useState<string>('');
   const navigate = useNavigate();
 
-  const CheckAuth = () => {
-    useEffect(() => {
-      Auth.isAuth && navigate('/');
-    }, [Auth]);
-  }
+  useEffect(() => {
+    Auth.isAuth && navigate('/');
+  }, [Auth]);
+
 
   const Check = () => {
     if (localStorage.getItem(login) === pass) {
-      dispatch({ type: 'IS_LOGIN', payload: Auth });
-      CheckAuth();
+      dispatch({ type: 'IS_LOGIN', payload: Auth.isAuth, login, pass });
     }
     else {
-      alert(`Неверный логин: ${login} или пароль: ${pass}`);
+      <ShowError />
     }
   }
   return (
