@@ -1,0 +1,17 @@
+@import '../../assets/styles/vars.scss';
+
+.card-movies {
+  &__list {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding-left: 0;
+    margin-bottom: 30px;
+  }
+}
+
+.favorites__empty {
+  margin-top: 30px;
+  font-size: 20px;
+}

@@ -15,3 +15,13 @@
     color: $black;
   }
 }
+
+.active {
+  background-color: red;
+  transition: ease-in-out 0.4s;
+  border: 1px solid red;
+  &:hover {
+    background-color: $white-color;
+    border: 1px solid $black;
+  }
+}

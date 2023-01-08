@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import Form from '../../components/common/Form';
 import Input from '../../components/common/Input';
 import InputPassword from '../../components/common/inputPassword';
@@ -29,13 +29,20 @@ const AuthPage = () => {
         setUsername((prev) => ({ ...prev, error: true }));
         setPassword((prev) => ({ ...prev, error: true }));
         return false;
+      } else if (item && password.value !== item.password) {
+        setPassword((prev) => ({ ...prev, error: true }));
+        return false;
       }
+    } else {
+      setUsername((prev) => ({ ...prev, error: true }));
+      setPassword((prev) => ({ ...prev, error: true }));
     }
 
     return true;
   };
 
-  const submitHandler = () => {
+  const submitHandler = (e: SyntheticEvent) => {
+    e.preventDefault();
     if (validation()) {
       const item = users.find((el) => el.username === username.value);
       dispatch(auth({ ...item! }));
@@ -66,7 +73,7 @@ const AuthPage = () => {
           visible={visible}
         />
       </div>
-      <PrimaryBtn title="sign in" handler={submitHandler} />
+      <PrimaryBtn title="sign in" handler={submitHandler} type="submit" />
     </Form>
   );
 };

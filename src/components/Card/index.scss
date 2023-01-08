@@ -5,6 +5,7 @@
   position: relative;
   min-width: 250px;
   max-width: 250px;
+  min-height: 375px;
   max-height: 400px;
   padding: 10px;
   border: 2px solid $main-color;
@@ -61,5 +62,19 @@
   &-btn__wrap {
     margin-top: 20px;
     width: calc(100% - 10px);
+  }
+}
+
+.modal {
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+  }
+  &__text {
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 30px;
   }
 }

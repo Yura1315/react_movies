@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import './index.scss';
 
 type SecondaryBtnPropsType = {
   title: string;
-  handle?: () => void;
+  activeStyle?: string;
+  handle?: (e: SyntheticEvent) => void;
   type?: 'button' | 'submit';
 };
 
-const SecondaryBtn = ({ title, handle, type = 'button' }: SecondaryBtnPropsType) => {
+const SecondaryBtn = ({ title, handle, type = 'button', activeStyle }: SecondaryBtnPropsType) => {
   return (
-    <button className="secondary-btn" type={type} onClick={handle}>
+    <button
+      className={activeStyle ? 'secondary-btn active' : 'secondary-btn'}
+      type={type}
+      onClick={handle}>
       {title}
     </button>
   );

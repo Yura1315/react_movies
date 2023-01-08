@@ -12,7 +12,7 @@ const AuthWrapper = () => {
     if (user.username && !location.state) {
       navigate('/');
     } else if (user.username && location.state) {
-      navigate(location.state.from.pathname);
+      navigate(location.state.from.pathname + location.state.from.search);
     }
   }, [user]);
   return (

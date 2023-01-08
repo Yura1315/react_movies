@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import Form from '../../components/common/Form';
 import Input from '../../components/common/Input';
 import InputPassword from '../../components/common/inputPassword';
@@ -46,7 +46,8 @@ const RegPage = () => {
     return true;
   };
 
-  const submitHandler = () => {
+  const submitHandler = (e: SyntheticEvent) => {
+    e.preventDefault();
     if (validation()) {
       const user = {
         id: Math.random().toString().slice(-4),
@@ -55,7 +56,6 @@ const RegPage = () => {
         history: [],
         favorites: [],
       };
-      console.log(user);
       dispatch(addUser(user));
       dispatch(auth(user));
     }
@@ -85,7 +85,7 @@ const RegPage = () => {
           textErr="Введите не менее 6 символов"
         />
       </div>
-      <PrimaryBtn title="create account" handler={submitHandler} />
+      <PrimaryBtn title="create account" handler={submitHandler} type="submit" />
     </Form>
   );
 };
