@@ -17,7 +17,7 @@ const makeRequest = async ({
         language: 'en-US',
       },
       baseURL: 'https://api.themoviedb.org/3/',
-      timeout: 10000,
+      // timeout: 10000,
     });
     return response.data;
   } catch (e) {

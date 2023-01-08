@@ -3,17 +3,29 @@ import { Link, useNavigate } from 'react-router-dom';
 import Form from '../Form';
 import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
-import './index.scss';
 import AccountNav from '../../AccountNav';
-import { useAppSelector } from '../../../hooks/redux/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux/redux';
+import { AuthSlice } from '../../../store/AuthSlice';
+import './index.scss';
 
 const Header = () => {
+  const dispatch = useAppDispatch();
+  const { addHistory } = AuthSlice.actions;
   const { user } = useAppSelector((state) => state.authReducer);
   const [search, setSearch] = useState({ value: '', error: false });
   const navigate = useNavigate();
+
   const searchHandle = (e: SyntheticEvent) => {
     e.preventDefault();
     if (search.value.length) {
+      dispatch(
+        addHistory({
+          id: Math.random().toString().slice(-5),
+          search: search.value,
+          link: `/search/movie?query=${search.value}&page=1`,
+          date: new Date(),
+        })
+      );
       setSearch((prev) => ({ ...prev, value: '' }));
       navigate(`search/movie?query=${search.value}&page=1`);
     }
