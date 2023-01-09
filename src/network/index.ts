@@ -13,11 +13,11 @@ const makeRequest = async ({
       url,
       data,
       params: {
-        api_key: '8e0babef43795dac6a90149ecacf44d4',
+        api_key: process.env.REACT_APP_API_KEY,
         language: 'en-US',
       },
-      baseURL: 'https://api.themoviedb.org/3/',
-      // timeout: 10000,
+      baseURL: process.env.REACT_APP_BASE_URL,
+      timeout: 10000,
     });
     return response.data;
   } catch (e) {

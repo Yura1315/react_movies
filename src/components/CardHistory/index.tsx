@@ -21,7 +21,7 @@ const CardHistory = ({ id, link, search, date }: IHistory) => {
       </div>
       <div className="card-link__items">
         <span className="card-link__item">{search}</span>
-        <span className="card-link__item">{date.toString()}</span>
+        <span className="card-link__item">{date}</span>
       </div>
       <button className="cross-btn" type="button" onClick={removeHistory}>
         <svg

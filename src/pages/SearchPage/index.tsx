@@ -39,7 +39,7 @@ const SearchPage = ({ dataMovies, prevPage, nextPage, queryParams }: SearchPageP
           </div>
           <ul className="card-movies__list">
             {transitions((style, el) => (
-              <animated.div style={style}>
+              <animated.li style={style}>
                 <Card
                   key={el.id}
                   adult={el.adult}
@@ -57,7 +57,7 @@ const SearchPage = ({ dataMovies, prevPage, nextPage, queryParams }: SearchPageP
                   vote_average={el.vote_average}
                   vote_count={el.vote_count}
                 />
-              </animated.div>
+              </animated.li>
             ))}
           </ul>
           <div className="search__bottom">

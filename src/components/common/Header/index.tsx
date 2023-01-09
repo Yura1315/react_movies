@@ -7,6 +7,7 @@ import AccountNav from '../../AccountNav';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux/redux';
 import { AuthSlice } from '../../../store/AuthSlice';
 import './index.scss';
+import formatDate from '../../../utils/formatDate';
 
 const Header = () => {
   const dispatch = useAppDispatch();
@@ -17,15 +18,18 @@ const Header = () => {
 
   const searchHandle = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (search.value.length) {
+    if (search.value.length && user.username) {
       dispatch(
         addHistory({
           id: Math.random().toString().slice(-5),
           search: search.value,
           link: `/search/movie?query=${search.value}&page=1`,
-          date: new Date(),
+          date: formatDate(new Date()),
         })
       );
+      setSearch((prev) => ({ ...prev, value: '' }));
+      navigate(`search/movie?query=${search.value}&page=1`);
+    } else if (search.value.length && !user.username) {
       setSearch((prev) => ({ ...prev, value: '' }));
       navigate(`search/movie?query=${search.value}&page=1`);
     }

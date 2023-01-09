@@ -11,7 +11,7 @@ const AuthHoc = ({ children }: AuthHocPropsType) => {
   const { user } = useAppSelector((state) => state.authReducer);
 
   if (!user.username) {
-    return <Navigate to="/login/auth" state={{ from: location }} />;
+    return <Navigate to="/login/reg" state={{ from: location }} />;
   }
 
   return <>{children}</>;

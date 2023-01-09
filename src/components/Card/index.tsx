@@ -23,6 +23,7 @@ const Card = (props: IMovie) => {
     e.stopPropagation();
     if (!user.username) {
       setOpen(true);
+      return;
     }
 
     if (user.favorites.length) {
@@ -43,7 +44,7 @@ const Card = (props: IMovie) => {
 
   const handleRedirect = () => {
     setOpen(false);
-    navigate('/login/auth', { state: { from: location } });
+    navigate('/login/reg', { state: { from: location } });
   };
 
   useEffect(() => {
