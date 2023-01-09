@@ -5,7 +5,7 @@ import './Signout.sass'
 
 const Signout = () => {
   const dispatch = useDispatch();
-  const Auth = useSelector((state: RootState) => state.auth)
+  const Auth = useSelector((state: RootState) => state.persistedReducer.auth)
 
   const goOut = () => {
     dispatch({ type: 'SIGN_OUT', payload: Auth });

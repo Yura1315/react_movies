@@ -13,7 +13,7 @@ import { RxCross1 } from 'react-icons/rx';
 const Header = () => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
 
-  const Auth = useSelector((state: RootState) => state.auth.isAuth)
+  const Auth = useSelector((state: RootState) => state.persistedReducer.auth.isAuth)
   return (
     <header className="header">
       <div className="header__wrap">

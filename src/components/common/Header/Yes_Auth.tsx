@@ -5,7 +5,7 @@ import Signout from '../../Signout/Signout';
 import './index.scss'
 
 const Yes_Auth = () => {
-  const Auth = useSelector((state: RootState) => state.auth);
+  const Auth = useSelector((state: RootState) => state.persistedReducer.auth);
   return (
     <>
       <Signout />

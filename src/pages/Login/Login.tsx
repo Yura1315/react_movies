@@ -7,7 +7,7 @@ import ShowError from '../Registrtion/ShowError';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const Auth = useSelector((state: RootState) => state.auth);
+  const Auth = useSelector((state: RootState) => state.persistedReducer.auth);
   const [login, setMail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
   const [err, setErr] = useState<string>('');
