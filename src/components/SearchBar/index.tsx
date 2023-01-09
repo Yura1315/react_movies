@@ -1,13 +1,12 @@
-import React, { useState, ChangeEvent, SyntheticEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BsSearch } from 'react-icons/bs';
 import './index.scss';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/search/${searchTerm}`);
   };
@@ -15,10 +14,11 @@ const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="search_bar">
-        <BsSearch aria-hidden="true" className="icon" />
         <input
           value={searchTerm}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search_input"
+          placeholder="Search"
         />
       </div>
     </form>

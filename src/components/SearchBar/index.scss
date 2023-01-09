@@ -1,9 +1,21 @@
 form {
-  padding: 8px;
+  width: 100%;
+  padding: 8px 0;
 }
 
 .search_bar {
   display: flex;
   flex-direction: row;
   justify-content: start;
+}
+
+.search_input {
+  width: 100%;
+  padding: 12px 24px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #575756;
+
+  &:focus {
+    outline: 0;
+  }
 }

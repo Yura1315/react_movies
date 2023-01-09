@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Form from '../Form';
-import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
 import './index.scss';
 import { useSelector } from 'react-redux';
@@ -9,9 +7,12 @@ import { RootState } from '../../../store/store';
 import No_Auth from './No_Auth';
 import Yes_Auth from './Yes_Auth';
 import AccountNav from '../../AccountNav';
-import SearchBar from '../../SearchBar';
+import { BsSearch } from 'react-icons/bs';
+import { RxCross1 } from 'react-icons/rx';
 
 const Header = () => {
+  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+
   const Auth = useSelector((state: RootState) => state.auth.isAuth)
   return (
     <header className="header">
@@ -24,13 +25,21 @@ const Header = () => {
             History
           </Link>
         </div>
-        <div className="header__search">
-          {/* <Form>
-            <Input />
-          </Form> */}
-          <SearchBar />
-        </div>
         <div className="header__right">
+          {isOpenSearch ? (
+            <Link to={'/'}>
+              <RxCross1
+                aria-hidden="true"
+                className="icon"
+                onClick={() => setIsOpenSearch(false)}
+              />
+            </Link>
+          ) : (
+            <Link to={'/search/:searchTerm'}>
+              <BsSearch aria-hidden="true" className="icon" onClick={() => setIsOpenSearch(true)} />
+            </Link>
+          )}
+
           <div className="favorites__wrap">
             <Link to={'/favorites'}>
               <svg
