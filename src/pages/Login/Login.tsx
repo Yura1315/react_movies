@@ -3,31 +3,35 @@ import './stLogin.sass'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
+import ShowError from '../Registrtion/ShowError';
 
 const Login = () => {
   const dispatch = useDispatch();
   const Auth = useSelector((state: RootState) => state.auth);
   const [login, setMail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
+  const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
 
-  const CheckAuth = () => {
-    useEffect(() => {
-      Auth.isAuth && navigate('/');
-    }, [Auth]);
-  }
+  useEffect(() => {
+    Auth.isAuth && navigate('/');
+  }, [Auth]);
 
-  const Check = () => {
-    if (localStorage.getItem(login) === pass) {
-      dispatch({ type: 'IS_LOGIN', payload: Auth });
-      CheckAuth();
+
+  const Check = (): void => {
+    if (login === "" || pass === "") {
+      setErr('Поля логин и пароль должны быть заполнены!')
+    }
+    else if (localStorage.getItem(login) === pass) {
+      dispatch({ type: 'IS_LOGIN', payload: Auth.isAuth, login, pass });
     }
     else {
-      alert(`Неверный логин: ${login} или пароль: ${pass}`);
+      setErr('Неверный логин или пароль')
     }
   }
   return (
     <>
+      {err ? <ShowError errText={err} /> : null}
       <div className='maint'>
         <div className="text">
           <h1 className='title'>Вход в аккаунт</h1>

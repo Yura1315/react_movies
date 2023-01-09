@@ -7,7 +7,7 @@ const No_Auth = () => {
     <>
       <Link to={"/signin"}>
         <span className="account">Вход</span>
-      </Link>:
+      </Link>
       <AccountNav />
       <Link to={"/registr"}>
         <span className="register">Регистрация</span>

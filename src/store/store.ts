@@ -8,6 +8,8 @@ const Auth = {
   isAuth: false,
   login: "",
   pass: "",
+  history: [],
+  likes: []
 }
 const IS_LOGIN = "IS_LOGIN";
 const IS_REGISTER = "IS_REGISTER";
@@ -16,7 +18,7 @@ const SIGN_OUT = "SIGN_OUT";
 const authReducer = (state = Auth, action: any) => {
   switch (action.type) {
     case IS_LOGIN:
-      return { ...state, isAuth: true }
+      return { ...state, isAuth: true, login: action.login, pass: action.pass }
     case IS_REGISTER:
       return { ...state, isAuth: true, login: action.login, pass: action.pass }
     case SIGN_OUT:
