@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 const No_Auth = () => {
   return (
     <>
-      <Link to={"/signin"}>
+      <Link to={'/signin'}>
         <span className="account">Вход</span>
       </Link>
       <AccountNav />
-      <Link to={"/registr"}>
+      <Link to={'/registr'}>
         <span className="register">Регистрация</span>
       </Link>
     </>
