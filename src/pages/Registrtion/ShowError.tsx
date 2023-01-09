@@ -1,9 +1,14 @@
 import React from 'react';
+import './ErrorStyle.sass'
 
-const ShowError = () => {
+type Props = {
+  errText: string
+};
+
+const ShowError = ({ errText }: Props) => {
   return (
     <div>
-      <h1>Ошибочка вышла</h1>
+      <span className='err'>{errText}</span>
     </div>
   );
 };

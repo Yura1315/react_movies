@@ -10,6 +10,7 @@ const Regist = () => {
   const Auth = useSelector((state: RootState) => state.auth);
   const [login, setMail] = useState<string>('')
   const [pass, setPass] = useState<string>('')
+  const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,18 +19,19 @@ const Regist = () => {
 
   const Save = (): void => {
     localStorage.setItem(login, pass);
-    if (localStorage.login !== undefined) {
-      <ShowError />
+    if (localStorage.getItem(login) === pass) {
+      setErr('Такой логин уже существует')
     }
     else if (login !== '' && pass !== '') {
       dispatch({ type: 'IS_REGISTER', payload: Auth.isAuth, login, pass })
     }
     else {
-      <ShowError />
+      setErr('Заполните поле логин и пароль')
     }
   }
   return (
     <>
+      {err ? <ShowError errText={err} /> : null}
       <div className='maint'>
         <div className="text">
           <h1>Зарегестрироваться</h1>

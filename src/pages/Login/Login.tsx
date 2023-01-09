@@ -10,6 +10,7 @@ const Login = () => {
   const Auth = useSelector((state: RootState) => state.auth);
   const [login, setMail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
+  const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,16 +18,20 @@ const Login = () => {
   }, [Auth]);
 
 
-  const Check = () => {
-    if (localStorage.getItem(login) === pass) {
+  const Check = (): void => {
+    if (login === "" || pass === "") {
+      setErr('Поля логин и пароль должны быть заполнены!')
+    }
+    else if (localStorage.getItem(login) === pass) {
       dispatch({ type: 'IS_LOGIN', payload: Auth.isAuth, login, pass });
     }
     else {
-      <ShowError />
+      setErr('Неверный логин или пароль')
     }
   }
   return (
     <>
+      {err ? <ShowError errText={err} /> : null}
       <div className='maint'>
         <div className="text">
           <h1 className='title'>Вход в аккаунт</h1>
