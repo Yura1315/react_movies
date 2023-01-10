@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="search_bar">
         <input
           value={searchTerm}

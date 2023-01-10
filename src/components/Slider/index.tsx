@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useFetchData from '../../hooks/useFetchData';
+import { useGetGenresListQuery } from '../../store/movieApiSlice';
 import IGenre from '../../models/IGenre';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,9 +10,7 @@ import 'swiper/css/free-mode';
 import './index.scss';
 
 const Slider = () => {
-  const { movieData } = useFetchData(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US`
-  );
+  const { data: movieData } = useGetGenresListQuery();
 
   console.log(movieData);
 

@@ -1,14 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import IMovie from '../../models/IMovie';
+import { useGetGenresQuery } from '../../store/movieApiSlice';
 import Card from '../../components/Card/index';
-import useFetchData from '../../hooks/useFetchData';
+import IMovie from '../../models/IMovie';
 
 const Genre = () => {
   const { id: genreId, name: genreName } = useParams();
-  const { movieData } = useFetchData(
-    `https://api.themoviedb.org/3/discover/movie?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US&with_genres=${genreId}`
-  );
+  const { data: movieData } = useGetGenresQuery(genreId as string);
 
   console.log(genreId, genreName);
 
