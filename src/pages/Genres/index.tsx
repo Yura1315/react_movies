@@ -1,18 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetGenresQuery } from '../../store/movieApiSlice';
+import { useGetGenresQuery } from '../../services/movieApiService';
 import Card from '../../components/Card/index';
 import IMovie from '../../models/IMovie';
 
 const Genre = () => {
   const { id: genreId, name: genreName } = useParams();
-  const { data: movieData } = useGetGenresQuery(genreId as string);
-
-  console.log(genreId, genreName);
+  const { data: movieData, isLoading, error } = useGetGenresQuery(genreId as string);
 
   return (
     <>
       <h1>{genreName}</h1>
+      {isLoading && <h2>Loading... </h2>}
+      {error && <h2>Something went wrong... </h2>}
       <div className="wrapper">
         {movieData?.results?.slice(0, 12).map((movie: IMovie) => (
           <Card

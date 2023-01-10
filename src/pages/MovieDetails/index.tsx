@@ -1,15 +1,12 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetMovieDetailsQuery } from '../../store/movieApiSlice';
+import { useGetMovieDetailsQuery } from '../../services/movieApiService';
 import Card from '../../components/Card/index';
 import './index.scss';
 
 const MovieDetails = () => {
   const { id: movieId } = useParams();
-  const { data: movieData } = useGetMovieDetailsQuery(movieId as string);
-
-  console.log(movieId);
-  console.log(movieData);
+  const { data: movieData, isLoading, error } = useGetMovieDetailsQuery(movieId as string);
 
   const popularity = Math.trunc(movieData?.popularity as number);
   const rate = Number(movieData?.vote_average.toFixed(1));
@@ -18,6 +15,8 @@ const MovieDetails = () => {
   return (
     <div>
       <h1>About the movie</h1>
+      {isLoading && <h2>Loading... </h2>}
+      {error && <h2>Something went wrong... </h2>}
       <div className="details_wrapper">
         <Card
           id={movieData?.id}

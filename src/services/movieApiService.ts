@@ -17,7 +17,7 @@ export const movieApi = createApi({
     }),
     getGenres: builder.query<IMovieData, string>({
       query: (genreId) =>
-        `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&with_genres=${genreId}`,
+        `/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&with_genres=${genreId}&page`,
     }),
     getMovies: builder.query<IMovieData, string>({
       query: (searchTerm) =>

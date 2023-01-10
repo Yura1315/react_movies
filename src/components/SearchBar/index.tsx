@@ -1,16 +1,12 @@
-import React, { FormEvent, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './index.scss';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="search_bar">
         <input
           value={searchTerm}
@@ -18,7 +14,9 @@ const SearchBar = () => {
           className="search_input"
           placeholder="Enter movie title..."
         />
-        <Link to={`/search/${searchTerm}`}>search</Link>
+        <Link to={`/search/${searchTerm}`} onClick={() => setSearchTerm('')}>
+          search
+        </Link>
       </div>
     </form>
   );

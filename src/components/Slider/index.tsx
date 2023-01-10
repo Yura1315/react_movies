@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useGetGenresListQuery } from '../../store/movieApiSlice';
+import { useGetGenresListQuery } from '../../services/movieApiService';
 import IGenre from '../../models/IGenre';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,12 +10,12 @@ import 'swiper/css/free-mode';
 import './index.scss';
 
 const Slider = () => {
-  const { data: movieData } = useGetGenresListQuery();
-
-  console.log(movieData);
+  const { data: movieData, isLoading, error } = useGetGenresListQuery('');
 
   return (
     <div className="slider">
+      {isLoading && <h2>Loading... </h2>}
+      {error && <h2>Something went wrong... </h2>}
       <Swiper
         slidesPerView={4}
         spaceBetween={15}
