@@ -16,9 +16,8 @@ const App = () => (
       <Route path="/movies/:id" element={<MovieDetails />} />
       <Route path="/genres/:name/:id" element={<Genres />} />
     </Route>
-    <Route path='/signin' element={<Login />}>
-    </Route>
-    <Route path='/registr' element={<Regist />}></Route>
+    <Route path="/signin" element={<Login />}></Route>
+    <Route path="/registr" element={<Regist />}></Route>
   </Routes>
 );
 export default App;
