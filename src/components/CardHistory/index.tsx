@@ -1,12 +1,17 @@
 import React, { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks/redux/redux';
 import IHistory from '../../models/IHistory';
+import { AuthSlice } from '../../store/AuthSlice';
 import './index.scss';
 
 const CardHistory = ({ id, link, search, date }: IHistory) => {
+  const dispatch = useAppDispatch();
+  const { removeOneHistory } = AuthSlice.actions;
   const removeHistory = (e: SyntheticEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    dispatch(removeOneHistory(id));
   };
   return (
     <Link className="card-link" to={link}>
