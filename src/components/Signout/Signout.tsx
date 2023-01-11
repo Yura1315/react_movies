@@ -1,14 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import './Signout.sass'
+import { useAppDispatch } from '../../hooks/redux/redux';
+import { AuthSlice } from '../../store/AuthSlice';
 
 const Signout = () => {
-  const dispatch = useDispatch();
-  const Auth = useSelector((state: RootState) => state.persistedReducer.auth)
+  const dispatch = useAppDispatch();
+  const { logOut } = AuthSlice.actions;
 
   const goOut = () => {
-    dispatch({ type: 'SIGN_OUT', payload: Auth });
+    dispatch(logOut());
   }
 
   return (
