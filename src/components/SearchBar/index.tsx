@@ -14,7 +14,9 @@ const SearchBar = () => {
           className="search_input"
           placeholder="Enter movie title..."
         />
-        <Link to={`/search/${searchTerm}`}>search</Link>
+        <Link to={`/search/${searchTerm}`} onClick={() => setSearchTerm('')}>
+          search
+        </Link>
       </div>
     </form>
   );

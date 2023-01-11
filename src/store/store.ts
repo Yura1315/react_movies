@@ -1,6 +1,7 @@
 import { combineReducers, configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
+import { movieApi } from '../services/movieApiService';
 import { movieApi } from './movieApiSlice';
 import usersReducer from './UsersSlice';
 import authReducer from './AuthSlice';
