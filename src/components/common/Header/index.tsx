@@ -4,15 +4,16 @@ import logo from '../../../assets/img/logo.svg';
 import './index.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import No_Auth from './No_Auth';
-import Yes_Auth from './Yes_Auth';
 import { BsSearch } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
+import NotAuthPage from '../../AuthNavbar/NotAuthPage';
+import AuthPage from '../../AuthNavbar/AuthPage';
+console.log('rendered');
 
 const Header = () => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+  const Auth = useSelector((state: RootState) => state.persistedReducer.authReducer.user);
 
-  const Auth = useSelector((state: RootState) => state.persistedReducer.auth.isAuth);
   return (
     <header className="header">
       <div className="header__wrap">
@@ -55,7 +56,7 @@ const Header = () => {
             </Link>
             <div className="count-likes">4</div>
           </div>
-          {Auth ? <Yes_Auth /> : <No_Auth />}
+          {Auth.isAuth ? <AuthPage /> : <NotAuthPage />}
         </div>
       </div>
     </header>

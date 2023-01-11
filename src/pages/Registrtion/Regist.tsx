@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import './stRegist.sass'
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
 import ShowError from './ShowError';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
+import { AuthSlice } from '../../store/AuthSlice';
+import { usersSlice } from '../../store/UsersSlice';
 
 const Regist = () => {
-  const dispatch = useDispatch();
-  const Auth = useSelector((state: RootState) => state.persistedReducer.auth);
+  const dispatch = useAppDispatch();
+  const { auth } = AuthSlice.actions;
+  const { addUser } = usersSlice.actions;
+  const Auth = useAppSelector((state: RootState) => state.persistedReducer.authReducer.user);
   const [login, setMail] = useState<string>('')
   const [pass, setPass] = useState<string>('')
   const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
+  const uniqKey = useId();
 
   useEffect(() => {
     Auth.isAuth && navigate('/');
@@ -19,14 +24,20 @@ const Regist = () => {
 
   const Save = (): void => {
     localStorage.setItem(login, pass);
-    if (localStorage.getItem(login) === pass) {
-      setErr('Такой логин уже существует')
-    }
-    else if (login !== '' && pass !== '') {
-      dispatch({ type: 'IS_REGISTER', payload: Auth.isAuth, login, pass })
+    if (login !== '' && pass !== '') {
+      const user = {
+        id: uniqKey,
+        isAuth: true,
+        username: login,
+        password: pass,
+        history: [],
+        favorites: [],
+      }
+      dispatch(addUser(user))
+      dispatch(auth(user));
     }
     else {
-      setErr('Заполните поле логин и пароль')
+      setErr('Заполните логин или пароль')
     }
   }
   return (

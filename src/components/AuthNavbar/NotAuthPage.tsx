@@ -1,8 +1,8 @@
 import React from 'react';
-import AccountNav from '../../AccountNav';
 import { Link } from 'react-router-dom';
+import AccountNav from '../AccountNav';
 
-const No_Auth = () => {
+const NotAuthPage = () => {
   return (
     <>
       <Link to={'/signin'}>
