@@ -16,4 +16,4 @@ const NotAuthPage = () => {
   );
 };
 
-export default No_Auth;
+export default NotAuthPage;
