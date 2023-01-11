@@ -1,5 +1,5 @@
-import React, { SyntheticEvent, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { SyntheticEvent, useEffect, useState, useTransition } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Form from '../Form';
 import Input from '../Input';
 import logo from '../../../assets/img/logo.svg';
@@ -8,12 +8,18 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/redux/redux';
 import { AuthSlice } from '../../../store/AuthSlice';
 import './index.scss';
 import formatDate from '../../../utils/formatDate';
+import Sadgest from '../../Sadgest';
+import IMovie from '../../../models/IMovie';
+import makeRequest from '../../../network';
 
 const Header = () => {
+  const location = useLocation();
+  const [isPending, startTransition] = useTransition();
   const dispatch = useAppDispatch();
   const { addHistory } = AuthSlice.actions;
   const { user } = useAppSelector((state) => state.authReducer);
   const [search, setSearch] = useState({ value: '', error: false });
+  const [sadgest, setSadgest] = useState<IMovie[]>();
   const navigate = useNavigate();
 
   const searchHandle = (e: SyntheticEvent) => {
@@ -34,6 +40,26 @@ const Header = () => {
       navigate(`search/movie?query=${search.value}&page=1`);
     }
   };
+
+  useEffect(() => {
+    if (search.value.length) {
+      const getDataMovie = async () => {
+        const data = await makeRequest({
+          url: `/search/movie?query=${search.value}`,
+        });
+        startTransition(() => setSadgest(data.results.slice(0, 5)));
+      };
+
+      getDataMovie();
+    }
+    setSadgest([]);
+  }, [search]);
+
+  useEffect(() => {
+    setSearch((prev) => ({ ...prev, value: '' }));
+    setSadgest([]);
+  }, [location]);
+
   return (
     <header className="header">
       <div className="header__wrap">
@@ -55,6 +81,7 @@ const Header = () => {
               searchHandle={searchHandle}
             />
           </Form>
+          {sadgest?.length ? <Sadgest movies={sadgest} loading={isPending} /> : ''}
         </div>
         <div className="header__right">
           <div className="favorites__wrap">

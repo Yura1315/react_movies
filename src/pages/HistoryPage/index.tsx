@@ -33,7 +33,7 @@ const HistoryPage = () => {
           </div>
           <ul className="history__wrap">
             {transitions((style, el) => (
-              <animated.div style={style}>
+              <animated.li style={style}>
                 <CardHistory
                   key={el.id}
                   id={el.id}
@@ -41,7 +41,7 @@ const HistoryPage = () => {
                   search={el.search}
                   date={el.date}
                 />
-              </animated.div>
+              </animated.li>
             ))}
           </ul>
         </>
