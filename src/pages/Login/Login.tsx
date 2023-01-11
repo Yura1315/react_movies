@@ -26,7 +26,7 @@ const Login = () => {
       setErr('Поля логин и пароль должны быть заполнены!')
     }
     else if (localStorage.getItem(login) === pass) {
-      const user = users.find(i => { i.username === login })
+      const user = users.find(i => { return i.username === login })
       // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
       dispatch(auth({ ...user! }));
     }
