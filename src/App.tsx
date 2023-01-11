@@ -7,6 +7,8 @@ import Regist from './pages/Registrtion/Regist';
 import Genres from './pages/Genres';
 import MovieDetails from './pages/MovieDetails';
 import Search from './pages/Search';
+import HistoryContainer from './containers/HistoryContainer';
+import AuthHoc from './components/HOC/AuthHoc';
 
 const App = () => (
   <Routes>
@@ -15,9 +17,17 @@ const App = () => (
       <Route path="/search/:searchTerm" element={<Search />} />
       <Route path="/movies/:id" element={<MovieDetails />} />
       <Route path="/genres/:name/:id" element={<Genres />} />
+      <Route
+        path="history"
+        element={
+          <AuthHoc>
+            <HistoryContainer />
+          </AuthHoc>
+        }
+      />
+      <Route path="/signin" element={<Login />}></Route>
+      <Route path="/registr" element={<Regist />}></Route>
     </Route>
-    <Route path="/signin" element={<Login />}></Route>
-    <Route path="/registr" element={<Regist />}></Route>
   </Routes>
 );
 export default App;

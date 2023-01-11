@@ -1,0 +1,26 @@
+@import '../../assets/styles/vars.scss';
+
+.history {
+  &__page {
+    padding-top: 30px;
+  }
+  &__wrap {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-left: 0;
+  }
+  &__clear {
+    display: flex;
+    &-btn {
+      background: transparent;
+      border: 1px solid $black;
+      font-size: 14px;
+      color: $black;
+      transition: ease-in-out 0.4s;
+      &:hover {
+        border: 1px solid $hover-color;
+        color: $hover-color;
+      }
+    }
+  }
+}
