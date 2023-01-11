@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useFetchData from '../../hooks/useFetchData';
+import { useGetGenresListQuery } from '../../services/movieApiService';
 import IGenre from '../../models/IGenre';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,14 +10,12 @@ import 'swiper/css/free-mode';
 import './index.scss';
 
 const Slider = () => {
-  const { movieData } = useFetchData(
-    `https://api.themoviedb.org/3/genre/movie/list?api_key=a5b5898e6b325a52c139406d69bf2613&language=en-US`
-  );
-
-  console.log(movieData);
+  const { data: movieData, isLoading, error } = useGetGenresListQuery('');
 
   return (
     <div className="slider">
+      {isLoading && <h2>Loading... </h2>}
+      {error && <h2>Something went wrong... </h2>}
       <Swiper
         slidesPerView={4}
         spaceBetween={15}
