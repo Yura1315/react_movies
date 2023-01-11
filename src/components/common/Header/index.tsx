@@ -48,7 +48,7 @@ const Header = () => {
         <div className="header__search">
           <Form>
             <Input
-              placeholder="enter text"
+              placeholder="enter movie"
               search
               value={search}
               setValue={setSearch}

@@ -21,6 +21,7 @@
   }
 
   &__header h1 {
+    font-size: 35px;
     margin-bottom: 0;
     padding-bottom: 0;
   }
@@ -37,14 +38,16 @@
     justify-content: center;
     align-items: center;
     margin-right: 8px;
+    padding: 5px 5px 5px;
     font-size: 16px;
     min-width: 73px;
-    background-color: $main-color;
+    background-color: $white-color;
     border-radius: 6px;
     color: $black;
     transition: ease-in-out 0.4s;
     &:hover {
       color: $hover-color;
+      background-color: $main-color;
     }
   }
   &__category-list {
