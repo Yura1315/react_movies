@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './stLogin.sass'
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
 import ShowError from '../Registrtion/ShowError';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
+import { AuthSlice } from '../../store/AuthSlice';
+
 
 const Login = () => {
-  const dispatch = useDispatch();
-  const Auth = useSelector((state: RootState) => state.persistedReducer.auth);
+  const dispatch = useAppDispatch();
+  const { auth } = AuthSlice.actions;
+  const { users } = useAppSelector((state) => state.persistedReducer.usersReducer);
+  const Auth = useAppSelector((state) => state.persistedReducer.authReducer.user.isAuth);
   const [login, setMail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
   const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    Auth.isAuth && navigate('/');
+    Auth && navigate('/');
   }, [Auth]);
 
 
@@ -23,7 +26,9 @@ const Login = () => {
       setErr('Поля логин и пароль должны быть заполнены!')
     }
     else if (localStorage.getItem(login) === pass) {
-      dispatch({ type: 'IS_LOGIN', payload: Auth.isAuth, login, pass });
+      const user = users.find(i => { i.username === login })
+      // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
+      dispatch(auth({ ...user! }));
     }
     else {
       setErr('Неверный логин или пароль')
