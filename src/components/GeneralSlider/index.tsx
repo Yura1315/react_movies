@@ -36,7 +36,7 @@ const GeneralSlider = ({ slides }: GeneralSliderPropsType) => {
               className={slideIndex === i + 1 ? 'slider__item-active' : 'slider__item'}>
               <div className="slider__info">
                 {el.original_title}
-                <PrimaryLink title="more" link="/movie/:id" />
+                <PrimaryLink title="more" link={`/movie/${slides[slideIndex - 1].id}`} />
               </div>
               <img
                 className="slider__img"

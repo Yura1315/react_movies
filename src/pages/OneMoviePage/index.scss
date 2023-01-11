@@ -1,0 +1,58 @@
+@import '../../assets/styles/vars.scss';
+
+.movie-page {
+  padding-top: 20px;
+  &__wrap {
+    display: flex;
+    justify-content: flex-start;
+  }
+  &__left {
+    max-height: 650px;
+    min-width: 435px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 10px 0 10px -10px rgba(0, 0, 0, 0.5);
+    & img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__header h1 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  &__right {
+    margin-left: 30px;
+  }
+  &__overview {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  &__category-item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    font-size: 16px;
+    min-width: 73px;
+    background-color: $main-color;
+    border-radius: 6px;
+    color: $black;
+    transition: ease-in-out 0.4s;
+    &:hover {
+      color: $hover-color;
+    }
+  }
+  &__category-list {
+    padding-left: 0;
+    padding-top: 0;
+    margin-top: 10px;
+  }
+  &__middle {
+    margin-top: 50px;
+  }
+}

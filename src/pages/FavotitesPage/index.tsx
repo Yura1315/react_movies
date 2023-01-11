@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useTransition, animated } from 'react-spring';
 import Card from '../../components/Card';
-import Pagination from '../../components/Pagination';
 import { useAppSelector } from '../../hooks/redux/redux';
 import './index.scss';
 
