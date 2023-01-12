@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Navigate, useLocation } from 'react-router';
+import { Navigate } from 'react-router';
 import { useAppSelector } from '../../hooks/redux/redux';
 
 type AuthHocPropsType = {

@@ -9,6 +9,7 @@ import MovieDetails from './pages/MovieDetails';
 import Search from './pages/Search';
 import HistoryContainer from './containers/HistoryContainer';
 import AuthHoc from './components/HOC/AuthHoc';
+import Favorities from './pages/Favorities/Favorities';
 
 const App = () => (
   <Routes>
@@ -25,6 +26,7 @@ const App = () => (
           </AuthHoc>
         }
       />
+      <Route path="/favorites" element={<Favorities />}></Route>
       <Route path="/signin" element={<Login />}></Route>
       <Route path="/registr" element={<Regist />}></Route>
     </Route>
