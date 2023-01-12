@@ -3,22 +3,22 @@ import './stLogin.sass'
 import { useNavigate } from "react-router-dom";
 import ShowError from '../Registrtion/ShowError';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
-import { AuthSlice } from '../../store/AuthSlice';
+import { usersSlice } from '../../store/UsersSlice';
 
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const { auth } = AuthSlice.actions;
+  const { auth } = usersSlice.actions;
   const { users } = useAppSelector((state) => state.persistedReducer.usersReducer);
-  const Auth = useAppSelector((state) => state.persistedReducer.authReducer.user.isAuth);
+  const currentUserId = useAppSelector((state) => state.persistedReducer.usersReducer.currentUserId);
   const [login, setMail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
   const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    Auth && navigate('/');
-  }, [Auth]);
+    currentUserId && navigate('/');
+  }, [currentUserId]);
 
 
   const Check = (): void => {
@@ -28,7 +28,9 @@ const Login = () => {
     else if (localStorage.getItem(login) === pass) {
       const user = users.find(i => { return i.username === login })
       // eslint-disable-next-line  @typescript-eslint/no-non-null-assertion
-      dispatch(auth({ ...user! }));
+      if (user) {
+        dispatch(auth(user.id));
+      }
     }
     else {
       setErr('Неверный логин или пароль')

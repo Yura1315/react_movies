@@ -1,15 +1,18 @@
 import React, { ReactNode } from 'react';
-import { Navigate } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 import { useAppSelector } from '../../hooks/redux/redux';
+import { selectCurrentUsers } from '../Selectors/users';
 
 type AuthHocPropsType = {
   children: ReactNode;
 };
 
 const AuthHoc = ({ children }: AuthHocPropsType) => {
-  const { isAuth } = useAppSelector((state) => state.persistedReducer.authReducer.user);
+  const user = useAppSelector(selectCurrentUsers)
+  const isAuth = Boolean(user);
+  const { pathname } = useLocation()
 
-  if (!isAuth) {
+  if (!isAuth && pathname !== '/signin' && pathname !== '/registr') {
     return <Navigate to="/signin" />;
   }
 

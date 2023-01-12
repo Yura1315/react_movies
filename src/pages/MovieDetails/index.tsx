@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useGetMovieDetailsQuery } from '../../services/movieApiService';
 import Card from '../../components/Card/index';
 import './index.scss';
-import { AuthSlice } from '../../store/AuthSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
+import { usersSlice } from '../../store/UsersSlice';
 
 const MovieDetails = () => {
   const { id: movieId } = useParams();
@@ -16,10 +16,10 @@ const MovieDetails = () => {
   const dispatch = useAppDispatch();
 
   const Like = () => {
-    const { user } = useAppSelector((state) => state.persistedReducer.authReducer);
-    const { addFavorites } = AuthSlice.actions
-    // dispatch(addFavorites());
-
+    const { addFavorites } = usersSlice.actions
+    if (movieData) {
+      dispatch(addFavorites(movieData));
+    }
   }
   return (
     <div>

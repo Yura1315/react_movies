@@ -13,7 +13,7 @@ import Favorities from './pages/Favorities/Favorities';
 
 const App = () => (
   <Routes>
-    <Route path="/" element={<PageWrapper />}>
+    <Route path="/" element={<AuthHoc><PageWrapper /></AuthHoc>}>
       <Route index element={<MainContainer />} />
       <Route path="/search/:searchTerm" element={<Search />} />
       <Route path="/movies/:id" element={<MovieDetails />} />
@@ -21,9 +21,7 @@ const App = () => (
       <Route
         path="history"
         element={
-          <AuthHoc>
-            <HistoryContainer />
-          </AuthHoc>
+          <HistoryContainer />
         }
       />
       <Route path="/favorites" element={<Favorities />}></Route>

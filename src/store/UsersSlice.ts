@@ -1,12 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import IUser from "../models/IUser";
+import IMovie from "../models/IMovie";
 
-interface UsersState {
+export interface UsersState {
   users: IUser[];
+  currentUserId: string;
 }
 
 const initialState: UsersState = {
-  users: []
+  users: [],
+  currentUserId: ''
 };
 
 export const usersSlice = createSlice({
@@ -15,7 +18,18 @@ export const usersSlice = createSlice({
   reducers: {
     addUser(state, action: PayloadAction<IUser>) {
       state.users.push(action.payload);
-    }
+    },
+    addFavorites(state, action: PayloadAction<IMovie>) {
+      const currentUser = state.users.find((user) => user.id === state.currentUserId)
+      console.log(state.currentUserId, state.users)
+      currentUser?.favorites.push(action.payload);
+    },
+    auth(state, action: PayloadAction<string>) {
+      state.currentUserId = action.payload;
+    },
+    logOut(state) {
+      state.currentUserId = '';
+    },
   }
 });
 
