@@ -4,10 +4,12 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { movieApi } from '../services/movieApiService';
 import usersReducer from './UsersSlice';
 import authReducer from './AuthSlice';
+import pageReducer from './pageSlice';
 
 const rootReducer = combineReducers({
   usersReducer,
-  authReducer
+  authReducer,
+  pageReducer,
 });
 
 const persistConfig = {
