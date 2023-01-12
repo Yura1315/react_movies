@@ -20,7 +20,7 @@ const OneMovieContainer = () => {
 
     setLoading(true);
     getDataMovie();
-  }, []);
+  }, [id]);
   return <>{isLoading ? <h1>loading</h1> : <OneMoviePage movie={movie} />}</>;
 };
 
