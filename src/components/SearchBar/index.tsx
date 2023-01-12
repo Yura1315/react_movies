@@ -4,12 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
 import formatDate from '../../services/formatDate';
 import { AuthSlice } from '../../store/AuthSlice';
 import './index.scss';
+import { selectCurrentUsers } from '../Selectors/users';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const dispatch = useAppDispatch();
   const { addHistory } = AuthSlice.actions;
-  const { isAuth } = useAppSelector((state) => state.persistedReducer.authReducer.user);
+  const user = useAppSelector(selectCurrentUsers)
+  const isAuth = Boolean(user);
   const handleSearch = () => {
     setSearchTerm('');
     if (isAuth) {

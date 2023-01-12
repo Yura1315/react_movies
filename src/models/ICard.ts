@@ -1,8 +1,8 @@
 interface ICard {
-  id: number | undefined;
-  name: string | undefined;
-  imgUrl: string | undefined;
-  rate: number | undefined;
+  id?: number;
+  name?: string;
+  imgUrl?: string;
+  rate?: number;
 }
 
 export type { ICard };

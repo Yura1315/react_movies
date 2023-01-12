@@ -1,19 +1,17 @@
 import React from 'react';
 import './Signout.sass'
-import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
-import { AuthSlice } from '../../store/AuthSlice';
+import { useAppDispatch } from '../../hooks/redux/redux';
+import { usersSlice } from '../../store/UsersSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Signout = () => {
   const dispatch = useAppDispatch();
-  const { logOut } = AuthSlice.actions;
-  const { users } = useAppSelector(state => state.persistedReducer.usersReducer)
-  const login = useAppSelector((state) => state.persistedReducer.authReducer.user.username);
+  const { logOut } = usersSlice.actions;
+  const navigate = useNavigate()
 
   const goOut = () => {
-    // users.find(i => {
-    //   return i.username === login
-    // }).isAuth = false;
     dispatch(logOut());
+    navigate('/signin')
   }
 
   return (

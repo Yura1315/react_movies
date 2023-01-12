@@ -1,40 +1,38 @@
-import React, { useState, useEffect, useId } from 'react';
+import React, { useState, useEffect } from 'react';
 import './stRegist.sass'
 import { RootState } from '../../store/store';
 import { useNavigate } from "react-router-dom";
 import ShowError from './ShowError';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
-import { AuthSlice } from '../../store/AuthSlice';
 import { usersSlice } from '../../store/UsersSlice';
+import { v4 } from 'uuid';
 
 const Regist = () => {
   const dispatch = useAppDispatch();
-  const { auth } = AuthSlice.actions;
-  const { addUser } = usersSlice.actions;
-  const Auth = useAppSelector((state: RootState) => state.persistedReducer.authReducer.user);
+  const { addUser, auth } = usersSlice.actions;
+  const currentUserId = useAppSelector((state: RootState) => state.persistedReducer.usersReducer.currentUserId);
   const [login, setMail] = useState<string>('')
   const [pass, setPass] = useState<string>('')
   const [err, setErr] = useState<string>('');
   const navigate = useNavigate();
-  const uniqKey = useId();
 
   useEffect(() => {
-    Auth.isAuth && navigate('/');
-  }, [Auth.isAuth]);
+    currentUserId && navigate('/');
+  }, [currentUserId]);
 
   const Save = (): void => {
     localStorage.setItem(login, pass);
     if (login !== '' && pass !== '') {
+      const uniqKey = v4();
       const user = {
         id: uniqKey,
-        isAuth: true,
         username: login,
         password: pass,
         history: [],
         favorites: [],
       }
       dispatch(addUser(user))
-      dispatch(auth(user));
+      dispatch(auth(user.id));
     }
     else {
       setErr('Заполните логин или пароль')
