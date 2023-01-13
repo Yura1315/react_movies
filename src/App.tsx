@@ -13,18 +13,19 @@ import Favorities from './pages/Favorities/Favorities';
 
 const App = () => (
   <Routes>
-    <Route path="/" element={<AuthHoc><PageWrapper /></AuthHoc>}>
+    <Route path="/" element={<PageWrapper />}>
       <Route index element={<MainContainer />} />
       <Route path="/search/:searchTerm" element={<Search />} />
       <Route path="/movies/:id" element={<MovieDetails />} />
       <Route path="/genres/:name/:id" element={<Genres />} />
       <Route
         path="history"
-        element={
+        element={<AuthHoc>
           <HistoryContainer />
+        </AuthHoc>
         }
       />
-      <Route path="/favorites" element={<Favorities />}></Route>
+      <Route path="/favorites" element={<AuthHoc><Favorities /></AuthHoc>}></Route>
       <Route path="/signin" element={<Login />}></Route>
       <Route path="/registr" element={<Regist />}></Route>
     </Route>

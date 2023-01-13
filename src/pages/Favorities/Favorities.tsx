@@ -1,13 +1,14 @@
 import React from 'react';
-import { useAppSelector } from '../../hooks/redux/redux';
-import { AuthSlice } from '../../store/AuthSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
 import Card from '../../components/Card';
 import { selectCurrentUsers } from '../../components/Selectors/users';
 import IMovie from '../../models/IMovie';
+import { usersSlice } from '../../store/UsersSlice';
 
 const Favorities = () => {
   const user = useAppSelector(selectCurrentUsers)
-  // const { addFavorites, removeFavorites } = AuthSlice.actions
+  const dispatch = useAppDispatch()
+  const { removeFavorites } = usersSlice.actions;
   return (
     <>
       {!user?.favorites.length ?
@@ -21,6 +22,7 @@ const Favorities = () => {
             rate={movie.vote_average}
           />
         })}
+      <button onClick={() => dispatch(removeFavorites(user))}>delete</button>
     </>
   );
 };
