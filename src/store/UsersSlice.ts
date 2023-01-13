@@ -21,7 +21,6 @@ export const usersSlice = createSlice({
     },
     addFavorites(state, action: PayloadAction<IMovie>) {
       const currentUser = state.users.find((user) => user.id === state.currentUserId)
-      console.log(state.currentUserId, state.users)
       currentUser?.favorites.push(action.payload);
     },
     auth(state, action: PayloadAction<string>) {
@@ -29,6 +28,10 @@ export const usersSlice = createSlice({
     },
     logOut(state) {
       state.currentUserId = '';
+    },
+    removeFavorites(state, action: PayloadAction<IMovie>) {
+      const currentUser = state.users.find((user) => user.id === state.currentUserId)
+      currentUser?.favorites.filter((el) => el.id !== action.payload.id);
     },
   }
 });
