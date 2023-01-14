@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/img/logo.svg';
 import './index.scss';
-import { RootState } from '../../../store/store';
 import { BsSearch } from 'react-icons/bs';
 import { RxCross1 } from 'react-icons/rx';
 import NotAuthPage from '../../AuthNavbar/NotAuthPage';
 import AuthPage from '../../AuthNavbar/AuthPage';
 import { useAppSelector } from '../../../hooks/redux/redux';
 import { selectCurrentUsers } from '../../Selectors/users';
-console.log('rendered');
 
 const Header = () => {
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);

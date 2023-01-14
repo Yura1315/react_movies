@@ -15,7 +15,7 @@ const Signout = () => {
   }
 
   return (
-    <span className='signup' onClick={() => goOut()}>Выйти</span>
+    <span className='signup' onClick={() => goOut()}>Exit</span>
   );
 };
 

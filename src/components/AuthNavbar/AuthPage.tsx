@@ -1,15 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import '../common/Header/index.scss'
-import { RootState } from '../../store/store';
 import Signout from '../Signout/Signout';
+import { selectCurrentUsers } from '../Selectors/users';
+import { useAppSelector } from '../../hooks/redux/redux';
 
 const AuthPage = () => {
-  const Auth = useSelector((state: RootState) => state.persistedReducer.authReducer.user);
+  const user = useAppSelector(selectCurrentUsers)
   return (
     <>
       <Signout />
-      <span className='auth'>Пользователь:{Auth.username}</span>
+      <span className='auth'>User:{user?.username}</span>
     </>
   );
 };

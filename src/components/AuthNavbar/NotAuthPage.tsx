@@ -6,11 +6,11 @@ const NotAuthPage = () => {
   return (
     <>
       <Link to={'/signin'}>
-        <span className="account">Вход</span>
+        <span className="account">Login</span>
       </Link>
       <AccountNav />
       <Link to={'/registr'}>
-        <span className="register">Регистрация</span>
+        <span className="register">Registration</span>
       </Link>
     </>
   );

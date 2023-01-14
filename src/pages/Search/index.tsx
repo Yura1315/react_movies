@@ -10,8 +10,6 @@ const Search = () => {
   const { searchTerm } = useParams<string>();
   const { data: movieData, isLoading, error } = useGetMoviesQuery(searchTerm as string);
 
-  console.log(movieData);
-
   return (
     <div className="search_wrapper">
       <SearchBar />

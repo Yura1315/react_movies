@@ -9,7 +9,6 @@ import { useAppDispatch } from '../../hooks/redux/redux';
 const HistoryPage = () => {
   const dispatch = useAppDispatch();
   const { history } = useSelector((state: RootState) => state.persistedReducer.authReducer.user);
-  console.log(history);
   const { clearHistory } = AuthSlice.actions;
 
   const handleClearHistory = (e: SyntheticEvent) => {
