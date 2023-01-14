@@ -23,7 +23,7 @@ const Login = () => {
 
   const Check = (): void => {
     if (login === "" || pass === "") {
-      setErr('Поля логин и пароль должны быть заполнены!')
+      setErr('Login and password fields must be filled!')
     }
     else if (localStorage.getItem(login) === pass) {
       const user = users.find(i => { return i.username === login })
@@ -33,7 +33,7 @@ const Login = () => {
       }
     }
     else {
-      setErr('Неверный логин или пароль')
+      setErr('wrong login or password')
     }
   }
   return (
@@ -41,11 +41,11 @@ const Login = () => {
       {err ? <ShowError errText={err} /> : null}
       <div className='maint'>
         <div className="text">
-          <h1 className='title'>Вход в аккаунт</h1>
+          <h1 className='title'>Sign in</h1>
           <input type="text"
             maxLength={25}
             className='text__inp'
-            placeholder='Введите логин'
+            placeholder='Enter login'
             value={login}
             onChange={event => setMail(event.target.value)} />
           <input
@@ -53,10 +53,10 @@ const Login = () => {
             minLength={8}
             type="password"
             className='text__input'
-            placeholder='Введите пароль'
+            placeholder='Enter password'
             value={pass}
             onChange={event => setPass(event.target.value)} />
-          <button className='text__btn' onClick={() => Check()}>Войти</button>
+          <button className='text__btn' onClick={() => Check()}>Check</button>
         </div>
       </div>
     </>

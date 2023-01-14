@@ -22,9 +22,6 @@ export const AuthSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    removeFavorites(state, action: PayloadAction<IMovie>) {
-      state.user.favorites = state.user.favorites.filter((el) => el.id !== action.payload.id);
-    },
     addHistory(state, action: PayloadAction<IHistory>) {
       state.user.history.push(action.payload);
     },

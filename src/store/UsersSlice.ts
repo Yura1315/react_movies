@@ -1,4 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import IUser from "../models/IUser";
 import IMovie from "../models/IMovie";
 
@@ -9,7 +9,7 @@ export interface UsersState {
 
 const initialState: UsersState = {
   users: [],
-  currentUserId: ''
+  currentUserId: '',
 };
 
 export const usersSlice = createSlice({
@@ -20,8 +20,9 @@ export const usersSlice = createSlice({
       state.users.push(action.payload);
     },
     addFavorites(state, action: PayloadAction<IMovie>) {
-      const currentUser = state.users.find((user) => user.id === state.currentUserId)
-      currentUser?.favorites.push(action.payload);
+      const currentUser = state.users.find((user) => user.id === state.currentUserId);
+      const count = currentUser?.favorites.find((like) => like.id === action.payload.id);
+      (!count) && currentUser?.favorites.push(action.payload);
     },
     auth(state, action: PayloadAction<string>) {
       state.currentUserId = action.payload;
@@ -29,9 +30,9 @@ export const usersSlice = createSlice({
     logOut(state) {
       state.currentUserId = '';
     },
-    removeFavorites(state, action: PayloadAction<IMovie>) {
+    removeFavorites(state) {
       const currentUser = state.users.find((user) => user.id === state.currentUserId)
-      currentUser?.favorites.filter((el) => el.id !== action.payload.id);
+      currentUser?.favorites.splice(0, currentUser?.favorites.length)
     },
   }
 });

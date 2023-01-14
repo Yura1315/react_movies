@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetMovieDetailsQuery } from '../../services/movieApiService';
 import Card from '../../components/Card/index';
 import './index.scss';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux/redux';
+import { useAppDispatch } from '../../hooks/redux/redux';
 import { usersSlice } from '../../store/UsersSlice';
 
 const MovieDetails = () => {

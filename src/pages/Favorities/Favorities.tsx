@@ -9,6 +9,7 @@ const Favorities = () => {
   const user = useAppSelector(selectCurrentUsers)
   const dispatch = useAppDispatch()
   const { removeFavorites } = usersSlice.actions;
+
   return (
     <>
       {!user?.favorites.length ?
@@ -22,7 +23,7 @@ const Favorities = () => {
             rate={movie.vote_average}
           />
         })}
-      <button onClick={() => dispatch(removeFavorites(user))}>delete</button>
+      <button onClick={() => dispatch(removeFavorites())}>delete</button>
     </>
   );
 };

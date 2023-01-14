@@ -21,7 +21,6 @@ const Regist = () => {
   }, [currentUserId]);
 
   const Save = (): void => {
-    localStorage.setItem(login, pass);
     if (login !== '' && pass !== '') {
       const uniqKey = v4();
       const user = {
@@ -35,7 +34,7 @@ const Regist = () => {
       dispatch(auth(user.id));
     }
     else {
-      setErr('Заполните логин или пароль')
+      setErr('Fill in your login or password')
     }
   }
   return (
@@ -43,11 +42,11 @@ const Regist = () => {
       {err ? <ShowError errText={err} /> : null}
       <div className='maint'>
         <div className="text">
-          <h1>Зарегестрироваться</h1>
+          <h1>Register</h1>
           <input type="text"
             maxLength={25}
             className='text__inp'
-            placeholder='Придумайте логин'
+            placeholder='Create a username'
             value={login}
             required
             onChange={event => setMail(event.target.value)} />
@@ -56,11 +55,11 @@ const Regist = () => {
             maxLength={25}
             minLength={8}
             className='text__input'
-            placeholder='Придумайте пароль'
+            placeholder='Create a password'
             value={pass}
             required
             onChange={event => setPass(event.target.value)} />
-          <button className='text__btn' onClick={() => Save()} >Старт</button>
+          <button className='text__btn' onClick={() => Save()} >Start</button>
         </div>
       </div>
     </>

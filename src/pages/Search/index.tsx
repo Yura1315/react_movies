@@ -14,8 +14,6 @@ const Search = () => {
   const { page } = useSelector((state: RootState) => state.persistedReducer.pageReducer);
   const { data: movieData, isLoading, error } = useGetMoviesQuery({ searchTerm, page }) || {};
 
-  console.log(movieData);
-
   return (
     <div className="search_wrapper">
       <SearchBar />
